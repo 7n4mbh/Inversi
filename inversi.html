@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ひっくり返さないオセロ</title>
+    <link rel="stylesheet" href="inversi-style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ひっくり返さないオセロ</h1>
+            <p class="game-description">隣接するマスにのみ置けて、相手の駒をひっくり返せない場所に置くゲームです</p>
+        </header>
+        
+        <div class="game-info">
+            <div class="player-info">
+                <div class="player black-player">
+                    <div class="player-indicator">
+                        <div class="piece black"></div>
+                        <span class="player-name">黒</span>
+                    </div>
+                    <div class="score">
+                        <span class="score-label">駒数:</span>
+                        <span id="black-score">2</span>
+                    </div>
+                </div>
+                
+                <div class="turn-indicator">
+                    <div id="current-turn">黒のターン</div>
+                    <div id="game-status"></div>
+                </div>
+                
+                <div class="player white-player">
+                    <div class="player-indicator">
+                        <div class="piece white"></div>
+                        <span class="player-name">白</span>
+                    </div>
+                    <div class="score">
+                        <span class="score-label">駒数:</span>
+                        <span id="white-score">2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-board-container">
+            <div id="game-board" class="game-board">
+                <!-- ボードのマスが動的に生成される -->
+            </div>
+        </div>
+        
+        <div class="game-controls">
+            <button id="reset-button" class="control-button">ゲームリセット</button>
+            <button id="pass-button" class="control-button" disabled>パス</button>
+        </div>
+        
+        <div class="rules-summary">
+            <h3>ルール要約</h3>
+            <ul>
+                <li>既存の駒に隣接する場所にのみ駒を置ける</li>
+                <li>相手の駒をひっくり返せる場所には置けない</li>
+                <li>有効な手がなくなったプレイヤーの負け</li>
+                <li>緑色のマスが置ける場所です</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="inversi-script.js"></script>
+</body>
+</html>
