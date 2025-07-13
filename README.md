@@ -130,8 +130,116 @@ inversi-README.md     # このファイル
 - 古いブラウザでは正常に動作しない可能性があります
 - ゲーム中にページを更新すると進行状況がリセットされます
 
+## 🚀 Azure Web Apps デプロイ
+
+このアプリケーションをAzure Web Appsにデプロイする手順です。
+
+### 前提条件
+- Azureアカウント
+- GitHub アカウント
+- Azure Portal へのアクセス
+
+### Step 1: Azure リソースの作成
+
+1. **リソースグループの作成**
+   - [Azure Portal](https://portal.azure.com) にログイン
+   - 「リソースグループ」→「作成」
+   - 名前: `inversi-rg`
+   - リージョン: `Japan East`
+
+2. **App Service の作成**
+   - 「App Service」→「作成」
+   - 基本設定:
+     - リソースグループ: `inversi-rg`
+     - 名前: `inversi-game-app` (ユニークな名前に変更)
+     - 発行: `コード`
+     - ランタイムスタック: `Node.js 18 LTS`
+     - オペレーティングシステム: `Linux`
+     - リージョン: `Japan East`
+     - プラン: `Free F1` (無料プラン)
+
+### Step 2: GitHub連携デプロイの設定
+
+1. **デプロイメントセンターを開く**
+   - 作成したApp Service → 「デプロイメントセンター」
+
+2. **ソース設定**
+   - ソース: `GitHub`
+   - GitHub アカウントで認証
+
+3. **リポジトリ設定**
+   - 組織: `7n4mbh`
+   - リポジトリ: `Inversi`
+   - ブランチ: `deploy-webapps`
+
+4. **ワークフロー設定**
+   - ワークフローオプション: `Add a workflow` を選択
+   - 認証タイプ: `Basic authentication` を選択
+
+5. **保存して待機**
+   - 「保存」をクリック
+   - GitHub Actions ワークフローが自動生成される
+   - 初回デプロイが開始される（数分かかります）
+
+### Step 3: デプロイ確認
+
+1. **デプロイ状況の確認**
+   - GitHub リポジトリの「Actions」タブでビルド状況を確認
+   - Azure Portal のデプロイメントセンターで進行状況を確認
+
+2. **アプリケーションのテスト**
+   - デプロイ完了後、`https://your-app-name.azurewebsites.net` にアクセス
+   - ゲームが正常に動作することを確認
+   - AI対戦モードもテスト
+
+### Step 4: 継続的デプロイ
+
+- `deploy-webapps` ブランチに変更をプッシュすると自動的に再デプロイされます
+- GitHub Actions により自動ビルド・デプロイが実行されます
+
+### ファイル構成（デプロイ用）
+
+```
+├── inversi.html              # メインゲーム画面
+├── inversi-style.css         # スタイリング
+├── inversi-script.js         # ゲームロジック（AI機能含む）
+├── server.js                 # Express.js サーバー
+├── package.json              # Node.js 依存関係
+├── web.config                # IISNode 設定
+└── README.md                 # このファイル
+```
+
+### トラブルシューティング
+
+#### デプロイが失敗する場合
+1. GitHub Actions のログを確認
+2. Azure App Service の診断ログを確認
+3. Node.js のバージョンが正しいか確認
+
+#### アプリケーションが起動しない場合
+1. Azure Portal → App Service → ログストリーム で エラーを確認
+2. `package.json` の `start` スクリプトが正しいか確認
+3. 環境変数 `PORT` が適切に設定されているか確認
+
+#### 404エラーが発生する場合
+1. `server.js` のルーティング設定を確認
+2. 静的ファイルのパスが正しいか確認
+
+### コスト管理
+
+- **Free F1 プラン**: 月間 60分の CPU時間制限
+- **Basic B1 プラン**: より多くのリソースが必要な場合（有料）
+- 使用状況は Azure Portal の「メトリック」で監視可能
+
 ## 📝 更新履歴
 
+- **v1.1.0**: AI対戦機能追加
+  - Claude連携によるAI思考システム
+  - 段階的思考演出で人間らしい反応
+  - スタート画面でゲームモード選択
+- **v1.0.1**: Azure Web Apps デプロイ対応
+  - Express.js サーバー実装
+  - GitHub Actions 自動デプロイ設定
 - **v1.0.0**: 初期リリース
   - 基本的なゲーム機能を実装
   - レスポンシブデザイン対応
