@@ -7,11 +7,39 @@
     <link rel="stylesheet" href="inversi-style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>ひっくり返さないオセロ</h1>
-            <p class="game-description">隣接するマスにのみ置けて、相手の駒をひっくり返せない場所に置くゲームです</p>
-        </header>
+    <!-- スタート画面 -->
+    <div id="start-screen" class="start-screen">
+        <div class="start-container">
+            <header>
+                <h1>ひっくり返さないオセロ</h1>
+                <p class="game-description">隣接するマスにのみ置けて、相手の駒をひっくり返せない場所に置くゲームです</p>
+            </header>
+            
+            <div class="mode-selection">
+                <h2>ゲームモードを選択してください</h2>
+                <div class="mode-buttons">
+                    <button id="ai-mode-button" class="mode-button">
+                        <div class="mode-icon">🤖</div>
+                        <div class="mode-title">１人プレイ</div>
+                        <div class="mode-subtitle">AI対戦</div>
+                    </button>
+                    <button id="two-player-mode-button" class="mode-button">
+                        <div class="mode-icon">👥</div>
+                        <div class="mode-title">２人プレイ</div>
+                        <div class="mode-subtitle">対人戦</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ゲーム画面 -->
+    <div id="game-screen" class="game-screen" style="display: none;">
+        <div class="container">
+            <header>
+                <h1>ひっくり返さないオセロ</h1>
+                <button id="back-to-start" class="back-button">← スタート画面に戻る</button>
+            </header>
         
         <div class="game-info">
             <div class="player-info">
@@ -63,6 +91,7 @@
                 <li>有効な手がなくなったプレイヤーの負け</li>
                 <li>緑色のマスが置ける場所です</li>
             </ul>
+        </div>
         </div>
     </div>
     

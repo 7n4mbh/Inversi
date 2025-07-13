@@ -16,6 +16,10 @@ class ReverseOthello {
         this.gameEnded = false;
         this.consecutivePasses = 0;
         
+        this.initializeGame();
+    }
+    
+    initializeGame() {
         this.initializeBoard();
         this.createBoardElements();
         this.attachEventListeners();
@@ -351,7 +355,50 @@ class ReverseOthello {
     }
 }
 
-// ゲーム開始
+// 画面遷移管理
+class ScreenManager {
+    constructor() {
+        this.game = null;
+        this.attachStartScreenListeners();
+    }
+    
+    attachStartScreenListeners() {
+        // スタート画面のボタンイベント
+        document.getElementById('ai-mode-button').addEventListener('click', () => {
+            console.log('AI対戦モードが選択されました（未実装）');
+        });
+        
+        document.getElementById('two-player-mode-button').addEventListener('click', () => {
+            this.startTwoPlayerGame();
+        });
+    }
+    
+    startTwoPlayerGame() {
+        // スタート画面を非表示、ゲーム画面を表示
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('game-screen').style.display = 'flex';
+        
+        // ゲームを初期化
+        if (this.game) {
+            this.game.resetGame();
+        } else {
+            this.game = new ReverseOthello();
+        }
+        
+        // スタート画面に戻るボタンのイベント
+        document.getElementById('back-to-start').addEventListener('click', () => {
+            this.backToStart();
+        });
+    }
+    
+    backToStart() {
+        // ゲーム画面を非表示、スタート画面を表示
+        document.getElementById('game-screen').style.display = 'none';
+        document.getElementById('start-screen').style.display = 'flex';
+    }
+}
+
+// アプリケーション開始
 document.addEventListener('DOMContentLoaded', () => {
-    new ReverseOthello();
+    new ScreenManager();
 });
