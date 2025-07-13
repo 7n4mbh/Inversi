@@ -10,9 +10,6 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 20px;
 }
 
@@ -45,6 +42,107 @@ header h1 {
     font-size: 1rem;
     opacity: 0.9;
     margin-top: 10px;
+}
+
+/* スタート画面 */
+.start-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.start-container {
+    max-width: 600px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.mode-selection {
+    padding: 40px;
+    text-align: center;
+}
+
+.mode-selection h2 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.mode-button {
+    background: white;
+    border: 3px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 30px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 160px;
+    font-family: inherit;
+}
+
+.mode-button:hover {
+    border-color: #667eea;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.2);
+}
+
+.mode-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.mode-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.mode-subtitle {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* ゲーム画面 */
+.game-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.back-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+header {
+    position: relative;
 }
 
 /* プレイヤー情報 */
@@ -367,5 +465,15 @@ header h1 {
     
     .game-description {
         font-size: 0.9rem;
+    }
+    
+    .mode-buttons {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .mode-button {
+        min-width: auto;
+        width: 100%;
     }
 }
